@@ -1,0 +1,16 @@
+if ([/system package get ipv6 disabled] = yes) do={ 
+/system package enable ipv6
+/system reboot
+ }
+ 
+ 
+ //////////// Scheduler////////
+ 
+/system scheduler
+add name=package-ipv6 on-event="if ([/system package get ipv6 disabled] = yes) d\
+    o={ \r\
+    \n/system package enable ipv6\r\
+    \n/system reboot\r\
+    \n }   " policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=jan/15/2020 start-time=00:00:00
